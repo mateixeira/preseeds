@@ -1,0 +1,30 @@
+default menu.c32
+prompt 0
+timeout 100
+ONTIMEOUT local
+
+menu title ########## PXE Boot Menu ##########
+
+label 1
+menu label ^1) Boot from local drive
+	localboot 0
+
+label 2
+menu label ^2) Install Ubuntu 14.04 x64
+        kernel ubuntu-installer/amd64/linux
+        append vga=792 initrd=ubuntu-installer/amd64/initrd.gz -- quiet
+
+label 3
+menu label ^3) Install Ubuntu 14.04 x64 Automated
+        kernel ubuntu-installer/amd64/linux
+        append preseed/url=ftp://179.106.218.2/pub/preseed_ubuntu.cfg ipv6.disable=1 auto=true priority=critical vga=792 initrd=ubuntu-installer/amd64/initrd.gz -- quiet
+
+label 4
+menu label ^4) Install Debian 8 x64
+        kernel debian-installer/amd64/linux
+        append vga=792 initrd=debian-installer/amd64/initrd.gz -- quiet
+
+label 5
+menu label ^5) Install Debian 8 x64 Automated
+       kernel debian-installer/amd64/linux
+       append preseed/url=ftp://179.106.218.2/pub/preseed_debian.cfg auto=true priority=critical vga=792 initrd=debian-installer/amd64/initrd.gz -- quiet
